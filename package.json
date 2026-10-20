@@ -1,0 +1,41 @@
+{
+  "name": "chatbot-task",
+  "version": "1.0.0",
+  "description": "Chat and voice bot: Voyage retrieval over LMSYS-Chat-1M, Claude generation, Vapi voice",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsc -p web/tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && tsc -p web/tsconfig.json --noEmit",
+    "prestart": "npm run build",
+    "start": "node --env-file-if-exists=.env dist/server.js",
+    "preingest": "npm run build",
+    "ingest": "node --env-file-if-exists=.env dist/scripts/ingestLmsys.js",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/src"]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.19.2",
+    "@types/supertest": "^7.2.1",
+    "eslint": "^10.13.0",
+    "jest": "^30.5.2",
+    "supertest": "^7.3.1",
+    "ts-jest": "^29.4.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0"
+  }
+}
